@@ -10,19 +10,17 @@ class RepairTests{
         cy.get("#\\:r1\\:").type("Automotics123")
         cy.get("button[type='submit']").click()
         cy.wait(10000)
-        //cy.url().should('eq','https://automotics-kcuppens-projects.vercel.app/')
     }
 
     UploadReports() {
-        cy.visit("https://automotics-kcuppens-projects.vercel.app/");
-        cy.get('.css-1capxqj').click(); // Upload report
+        cy.visit("https://automotics-kcuppens-projects.vercel.app/")
+        cy.get('.css-1capxqj').click()
         cy.url().should('eq', 'https://automotics-kcuppens-projects.vercel.app/repair/?modalType=upload')
         cy.get('.css-1u1o14a > .MuiButtonBase-root').click()
         cy.get('.MuiSelect-select').click()
         cy.wait(5000)
         cy.get('[data-value="746"]').click()
     
-        // List of files to upload
         const files = [
             'Documents/94969_challanform_638_1722682869.pdf',
             'Documents/Automotics - Dashboard (1) (1).pdf',
@@ -396,13 +394,10 @@ class RepairTests{
         cy.get('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.css-1jceq7l').click()
         cy.get('.MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.css-qiwgdb').click()
         cy.get('.MuiButtonBase-root.MuiMenuItem-root.MuiMenuItem-gutters.css-1qf12eh').click()
-        // cy.get('.css-u7b0ot > .MuiButtonBase-root').click({force: true})
-        // cy.get('.MuiAlert-message > .MuiTypography-root').should('have.text','Success')
+        cy.get('.css-u7b0ot > .MuiButtonBase-root').click({force: true})
+        cy.get('.MuiAlert-message > .MuiTypography-root').should('have.text','Success')
     }
 
-
-    //28 onward          
-    //Need to test 2 same cars using filters
     CoupleCar(){
         cy.get('[aria-label="Repair"]').click()
         cy.wait(10000)
@@ -509,7 +504,6 @@ class RepairTests{
         cy.get('.css-1crt8ru').click()
     }
 
-    //41 and onwards
     ValidateNotifications(){
         cy.log('>>> Validate Recieved Nootification')
 

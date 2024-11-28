@@ -5,11 +5,9 @@ describe('Repair Tests',() => {
 
     beforeEach("Login",()=>{
         Cypress.on('uncaught:exception', (err, runnable) => {
-            // Ignore the specific error
             if (err.message.includes('Cannot read properties of undefined')) {
-              return false;  // Prevent Cypress from failing the test
+              return false
             }
-            // Let Cypress fail the test for all other errors
             return true;
           });
         obj.Login()
@@ -116,7 +114,6 @@ describe('Repair Tests',() => {
         obj.CreateNewSubservice3()
     })
 
-    //28 onwards
     it('Couple Car', () => {
         obj.CoupleCar()
     })
@@ -163,7 +160,6 @@ describe('Repair Tests',() => {
         obj.DeleteFaultcode()
     })
 
-    //41 and onwards
     it('Notifications', () => {
         obj.UploadReports()
         obj.ValidateNotifications()

@@ -107,7 +107,6 @@ describe('Fleet Manager Tests suits',() => {
         obj.ChangeServiceStatus()
     })
 
-    //Requested services Modal Testcases  28/11/24 
     it('Change Status', () => {
         obj.ChangeStatus()
     })
@@ -148,7 +147,6 @@ describe('Fleet Manager Tests suits',() => {
         obj.CreateNewSubservice3()
     })
 
-    //28 Onwards
     it('Couple Car', () => {
         obj.CoupleCar()
     })
@@ -177,7 +175,6 @@ describe('Fleet Manager Tests suits',() => {
         obj.ShowMore()
     })
 
-    //41 Onwards
     it('Validate Notifications', () => {
         obj.ValidateNotifications()
     })

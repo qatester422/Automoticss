@@ -46,7 +46,6 @@ class FleetManager{
                 cy.clearAllCookies()
                 cy.clearAllLocalStorage()
                 cy.clearAllSessionStorage()
-                // Visit the link
                 cy.visit(link);
               });
         cy.get('[name="newPassword"]').type('Qwer123!@#')
@@ -61,7 +60,7 @@ class FleetManager{
 
     ForgetPassword(){
         let attempts = 0;
-        const maxAttempts = 5;  // Maximum retry attempts
+        const maxAttempts = 5;  
         const interval = 5000;
         cy.visit("https://automotics-kcuppens-projects.vercel.app/login")
         cy.get('[class="MuiTypography-root MuiTypography-body1 css-1odr1nx"]').click()
@@ -82,13 +81,12 @@ class FleetManager{
                 cy.log('Email subject:', email.subject); 
                 console.log(email)
                 const emailBody = email.html.body;
-                const link = emailBody.match(/https?:\/\/[^\s]+/)[0];  // Extract first link
+                const link = emailBody.match(/https?:\/\/[^\s]+/)[0];  
 
                 cy.log('Email contains link: ', link);
                 cy.clearAllCookies()
                 cy.clearAllLocalStorage()
                 cy.clearAllSessionStorage()
-                // Visit the link
                 cy.visit(link);
               });
         cy.get('[name="newPassword"]').type('Qwer123!@#')
@@ -163,8 +161,8 @@ class FleetManager{
     }
 
     UploadReports() {
-        cy.visit("https://automotics-kcuppens-projects.vercel.app/");
-        cy.get('.css-1capxqj').click(); // Upload report
+        cy.visit("https://automotics-kcuppens-projects.vercel.app/")
+        cy.get('.css-1capxqj').click()
         cy.url().should('eq', 'https://automotics-kcuppens-projects.vercel.app/repair/?modalType=upload')
         cy.get('.css-1u1o14a > .MuiButtonBase-root').click()
         cy.get('.MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedStart.css-1cq0fp4').eq(0).click();
@@ -281,7 +279,7 @@ class FleetManager{
         cy.wait(4000)
         cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').should('have.text','Peugeot')
     }
-    // Cant download report there is no option avaailable for downloading reports
+    // Cant download report bcz of permissions
     DownloadManualReport(){
         cy.get('[aria-label="Repair"]').click()
         cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('VF38EBHXMJL003134')
@@ -293,7 +291,7 @@ class FleetManager{
         cy.get('.css-1ialerq > .MuiStack-root > .MuiBox-root > .MuiTypography-root').click()//downloadBtn
         cy.get('[tabindex="0"][role="menuitem"] > .MuiListItemText-root > .MuiTypography-root').click()
     }
-    // Cant download report there is no option avaailable for downloading reports
+     // Cant download report bcz of permissions
     DownloadCustomReport(){
         cy.get('[aria-label="Repair"]').click()
         cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('VF38EBHXMJL003134')
@@ -351,7 +349,7 @@ class FleetManager{
         cy.get('.css-1k2xoqy > .MuiButtonBase-root').click()
         cy.get('.MuiAlert-message > .MuiTypography-root').should('be.visible')
     }
-    /// Cant do this as we dont have access to change status from both super user and fleet manager
+
     ChangeServiceStatus(){
         cy.get('[aria-label="Repair"]').click()
         cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('VF38EBHXMJL003134')
@@ -365,7 +363,6 @@ class FleetManager{
         cy.get('.css-1k2xoqy > .MuiButtonBase-root').click()
     }
 
-    //Requested services Modal Testcases  28/11/24 
     ChangeStatus(){
         cy.get('[aria-label="Repair"]').click()
         cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('987654321')
@@ -527,15 +524,8 @@ class FleetManager{
         cy.get('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.css-fvlvy7').first().click()
         cy.get('.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-1yxmbwk').eq(10).click()
         cy.get('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.css-1jceq7l').click()
-        //will set here once the issue is resolved
     }
 
-
-
-
-
-
-    //28 Onwards
     CoupleCar(){
         cy.get('[aria-label="Repair"]').click()
         cy.wait(10000)
@@ -594,9 +584,6 @@ class FleetManager{
         cy.get('.MuiButton-root > .MuiTypography-root').click()
     }
 
-    //Faultcodes are not for fleet manager, test case no (36,37,38,39,40)
-
-    //41 onwards
     ValidateNotifications(){
         cy.log('>>> Validate Recieved Nootification')
 
@@ -707,13 +694,12 @@ class FleetManager{
         cy.url().should('include','/groups')
     }
 
-    //Fleet manager dont have access to create group
     CreateGroup(){
         cy.get('[data-testid="KeyboardArrowDownIcon"]').click()
         cy.get('[class="MuiListItemText-root css-9uwfd7"]').eq(2).click()
         cy.url().should('include','/groups')
     }
-    //fleet manager dont have access to edit..... and i have put assertion 'Access Denied' and working perfet
+
     EditGroup(){
         cy.get('[data-testid="KeyboardArrowDownIcon"]').click()
         cy.get('[class="MuiListItemText-root css-9uwfd7"]').eq(2).click()
@@ -723,7 +709,6 @@ class FleetManager{
         cy.get('.MuiTypography-root.MuiTypography-body1.css-1j729wa').should('have.text', 'Access Denied')
     }
 
-    //same assertion here
     DeleteGroup(){
         cy.get('[data-testid="KeyboardArrowDownIcon"]').click()
         cy.get('[class="MuiListItemText-root css-9uwfd7"]').eq(2).click()
@@ -737,6 +722,4 @@ class FleetManager{
         cy.get('[class="MuiListItemText-root css-1w0mxn0"]').click()
         cy.url().should('include','/login')
     }
-
-
 }

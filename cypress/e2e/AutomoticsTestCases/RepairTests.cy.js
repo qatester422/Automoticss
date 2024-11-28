@@ -110,7 +110,7 @@ describe('Repair Tests',() => {
         obj.CreateNewSubservice2()
     })
 
-    it.only('Create New Subservice 3', () => {
+    it('Create New Subservice 3', () => {
         obj.CreateNewSubservice3()
     })
 

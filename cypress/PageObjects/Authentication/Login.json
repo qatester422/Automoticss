@@ -1,0 +1,11 @@
+{
+    "loginLocators": {
+    "email": "//input[@id=':r0:']",
+    "password": "//input[@id=':r1:']",
+    "submitButton": "//button[normalize-space()='Log In']"
+  },
+  "dashboardPage": {
+    "welcomeMessage": ".welcome",
+    "logoutButton": "#logout"
+  }
+}

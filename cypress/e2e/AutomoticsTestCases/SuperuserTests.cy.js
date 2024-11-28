@@ -11,7 +11,7 @@ describe('Superuser Tests', () => {
         dashboardObj.DashboardEndpoints()
     })
 
-    it.only('Dashboard Functionality', () => {
+    it('Dashboard Functionality', () => {
         dashboardObj.CreateClient()
         dashboardObj.AssignClient()
         dashboardObj.FaultcodeSolutions()

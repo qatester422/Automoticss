@@ -1,4 +1,4 @@
-name: Cypress Test Automation
+name: Cypress Tests
 
 on:
   push:
@@ -9,23 +9,30 @@ on:
       - main
 
 jobs:
-  e2e-tests:
+  cypress-run:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        browser: [chrome, firefox, safari]
 
     steps:
-      - name: Checkout repository
+      # Check out the code from the repository
+      - name: Checkout code
         uses: actions/checkout@v2
 
+      # Set up Node.js environment
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '16'  # You can specify the version you need
 
+      # Install dependencies
       - name: Install dependencies
-        run: npm install
+        run: |
+          npm ci  # Or `npm install` if you're not using a lock file
 
+      # Install Cypress
+      - name: Install Cypress
+        run: npm install cypress --save-dev
+
+      # Run Cypress tests
       - name: Run Cypress tests
-        run: npm run test --browser ${{ matrix.browser }}
+        run: npx cypress run
+

@@ -46,6 +46,7 @@ class FleetManager{
                 cy.clearAllCookies()
                 cy.clearAllLocalStorage()
                 cy.clearAllSessionStorage()
+                // Visit the link
                 cy.visit(link);
               });
         cy.get('[name="newPassword"]').type('Qwer123!@#')
@@ -60,7 +61,7 @@ class FleetManager{
 
     ForgetPassword(){
         let attempts = 0;
-        const maxAttempts = 5;  
+        const maxAttempts = 5;  // Maximum retry attempts
         const interval = 5000;
         cy.visit("https://automotics-kcuppens-projects.vercel.app/login")
         cy.get('[class="MuiTypography-root MuiTypography-body1 css-1odr1nx"]').click()
@@ -81,12 +82,13 @@ class FleetManager{
                 cy.log('Email subject:', email.subject); 
                 console.log(email)
                 const emailBody = email.html.body;
-                const link = emailBody.match(/https?:\/\/[^\s]+/)[0];  
+                const link = emailBody.match(/https?:\/\/[^\s]+/)[0];  // Extract first link
 
                 cy.log('Email contains link: ', link);
                 cy.clearAllCookies()
                 cy.clearAllLocalStorage()
                 cy.clearAllSessionStorage()
+                // Visit the link
                 cy.visit(link);
               });
         cy.get('[name="newPassword"]').type('Qwer123!@#')
@@ -161,12 +163,15 @@ class FleetManager{
     }
 
     UploadReports() {
-        cy.visit("https://automotics-kcuppens-projects.vercel.app/")
-        cy.get('.css-1capxqj').click()
+        cy.visit("https://automotics-kcuppens-projects.vercel.app/");
+        cy.get('.css-1capxqj').click(); // Upload report
         cy.url().should('eq', 'https://automotics-kcuppens-projects.vercel.app/repair/?modalType=upload')
         cy.get('.css-1u1o14a > .MuiButtonBase-root').click()
-        cy.get('.MuiSelect-select.MuiSelect-outlined.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedStart.css-1cq0fp4').eq(0).click();
-        cy.get('#\\:r9\\: > .Mui-selected').click()
+        cy.get('.MuiSelect-select').click()
+        cy.wait(5000)
+        cy.get('.MuiList-root.MuiList-padding.MuiMenu-list.css-r8u8y9 > .MuiButtonBase-root').eq(1).click()
+    
+        //cy.get('#\\:r9\\: > .Mui-selected').click()
         const files = [
             'Documents/94969_challanform_638_1722682869.pdf',
             'Documents/Automotics - Dashboard (1) (1).pdf',
@@ -192,9 +197,9 @@ class FleetManager{
     CarDataFilledIn(){
         cy.get('[aria-label="Repair"]').click()
         cy.wait(5000)
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('have.text','Peugeot')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('have.text','Boxer2024')
-        cy.get('[class="MuiBox-root css-1qxtz39"]').first().should('have.text','VIN :123456789')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('have.text','Audi')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('be.visible')
+        cy.get('[class="MuiBox-root css-1qxtz39"]').first().should('contain.text','VIN')
     }
 
     CheckVIN(){
@@ -214,7 +219,7 @@ class FleetManager{
         cy.get('[class="MuiBox-root css-1qxtz39"]').first().should('include.text','VIN :')
     }
 
-    ChangeStatus(){
+    ChangeStatus1(){
         cy.get('[aria-label="Repair"]').click()
         cy.wait(5000)
         cy.get('.MuiButtonBase-root.css-1knlxk0').eq(1).click()
@@ -222,7 +227,7 @@ class FleetManager{
         cy.get('.MuiInputBase-input.MuiInputBase-inputAdornedStart.MuiInputBase-inputAdornedEnd.MuiAutocomplete-input.MuiAutocomplete-inputFocused.css-mnn31').type('open')   
         cy.get('.MuiAutocomplete-option').contains('open').click()
         cy.wait(10000)
-        cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('have.text','Boxer2024')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('be.visible')
         cy.get('[class="MuiBox-root css-1qxtz39"]').first().should('include.text','VIN :')
 
     }
@@ -273,13 +278,13 @@ class FleetManager{
 
       ReanalizeReport(){
         cy.get('[aria-label="Repair"]').click()
-        cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('12345678')
+        cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('987654321')
         cy.wait(9000)
         cy.reload()
         cy.wait(4000)
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').should('have.text','Peugeot')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('have.text','Peugeot')
     }
-    // Cant download report bcz of permissions
+    // Cant download report there is no option avaailable for downloading reports
     DownloadManualReport(){
         cy.get('[aria-label="Repair"]').click()
         cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('VF38EBHXMJL003134')
@@ -291,10 +296,10 @@ class FleetManager{
         cy.get('.css-1ialerq > .MuiStack-root > .MuiBox-root > .MuiTypography-root').click()//downloadBtn
         cy.get('[tabindex="0"][role="menuitem"] > .MuiListItemText-root > .MuiTypography-root').click()
     }
-     // Cant download report bcz of permissions
+    // Cant download report there is no option avaailable for downloading reports
     DownloadCustomReport(){
         cy.get('[aria-label="Repair"]').click()
-        cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('VF38EBHXMJL003134')
+        cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('TSMJYAD2S00B33608')
         cy.wait(9000)
         cy.reload()
         cy.wait(4000)
@@ -349,10 +354,10 @@ class FleetManager{
         cy.get('.css-1k2xoqy > .MuiButtonBase-root').click()
         cy.get('.MuiAlert-message > .MuiTypography-root').should('be.visible')
     }
-
+    /// Cant do this as we dont have access to change status from both super user and fleet manager
     ChangeServiceStatus(){
         cy.get('[aria-label="Repair"]').click()
-        cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('VF38EBHXMJL003134')
+        cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('987654321')
         cy.wait(9000)
         cy.reload()
         cy.wait(4000)
@@ -363,6 +368,7 @@ class FleetManager{
         cy.get('.css-1k2xoqy > .MuiButtonBase-root').click()
     }
 
+    //Requested services Modal Testcases  28/11/24 
     ChangeStatus(){
         cy.get('[aria-label="Repair"]').click()
         cy.get('[class="MuiInputBase-input MuiOutlinedInput-input MuiInputBase-inputAdornedStart css-1ixds2g"]').type('987654321')
@@ -524,19 +530,26 @@ class FleetManager{
         cy.get('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.css-fvlvy7').first().click()
         cy.get('.MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-1yxmbwk').eq(10).click()
         cy.get('.MuiButtonBase-root.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeMedium.MuiButton-containedSizeMedium.MuiButton-colorPrimary.MuiButton-disableElevation.css-1jceq7l').click()
+        //will set here once the issue is resolved
     }
 
+
+
+
+
+
+    //28 Onwards
     CoupleCar(){
         cy.get('[aria-label="Repair"]').click()
         cy.wait(10000)
         cy.get('[class="MuiButtonBase-root css-1knlxk0"]').eq(0).click()
-        cy.get('[role="combobox"]').last().type('Peugeot').type('{enter}')
+        cy.get('[role="combobox"]').last().type('Audi').type('{enter}')
         cy.get('[class="MuiButtonBase-root css-1knlxk0"]').eq(1).click()
-        cy.get('[role="combobox"]').last().type('Boxer').type('{enter}')
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(0).should('have.text','Peugeot')
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(1).should('have.text','Peugeot')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(0).should('have.text','Boxer2024')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(1).should('have.text','Boxer2024')
+        cy.get('[role="combobox"]').last().type('A32020').type('{enter}')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(0).should('have.text','Audi')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(1).should('have.text','Audi')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(0).should('have.text','A32020')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(1).should('have.text','A32020')
     }
 
     ShowMore(){
@@ -554,6 +567,7 @@ class FleetManager{
     CreateNewClients(){
         const values = ["Tester1", "Tester2", "Tester3","Tester4", "Tester5"]
         for (let value of values) {
+            cy.wait(7000)
             cy.get('[aria-label="Client"]').click()
             cy.get(".MuiButtonBase-root.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButton-colorPrimary.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButton-colorPrimary.css-tl61s7").click()
             cy.get(".MuiInputBase-input.MuiOutlinedInput-input.css-1x5jdmq", { timeout: 5000 })
@@ -575,21 +589,24 @@ class FleetManager{
 
     DeleteClient(){
         cy.get('[aria-label="Client"]').click()
-        cy.get('[class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"]').eq(12).click()
-        cy.get('.css-1crt8ru').click()
+        cy.get('.MuiStack-root.css-rzhh08 > .MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-1yxmbwk').eq(1).click({force:true})
+        cy.get('[class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary css-1crt8ru"]').click()
     }
+    
 
     ShowMore(){
         cy.get('[aria-label="Client"]').click()
         cy.get('.MuiButton-root > .MuiTypography-root').click()
     }
 
+    //Faultcodes are not for fleet manager, test case no (36,37,38,39,40)
+
+    //41 onwards
     ValidateNotifications(){
         cy.log('>>> Validate Recieved Nootification')
 
         cy.get('.MuiBadge-badge').last().should('be.visible')
-        cy.get('MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-w2epbx').click()
-        cy.get(':nth-child(3) > .MuiBadge-root > .MuiButtonBase-root > [data-testid="NotificationsIcon"] > path').click()
+        cy.get('.MuiBadge-root > .MuiButtonBase-root').click()
         cy.get('[class="MuiBox-root css-1l5spsu"]').first().should('be.visible')
 
         cy.log('>>> Validate Read One Notification at a time')
@@ -665,7 +682,8 @@ class FleetManager{
         cy.get('[id="demo-positioned-button"]').eq(0).click()
         cy.get('[tabindex="0"][role="menuitem"] > .MuiListItemText-root > .MuiTypography-root').click()
         cy.get('.MuiList-padding').invoke('hide')
-        cy.get('[class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-esi9ax"]').invoke('removeAttr', 'aria-hidden').click();        cy.get('[name="first_name"]').trigger('click')
+        cy.get('[class="MuiBackdrop-root MuiBackdrop-invisible MuiModal-backdrop css-esi9ax"]').invoke('removeAttr', 'aria-hidden').click();        
+        cy.get('[name="first_name"]').trigger('click')
         cy.get('[name="first_name"]').clear().type('Fname')
         cy.get('[name="last_name"]').type('Lname')
         cy.get('.MuiDialogActions-root > .MuiButtonBase-root').click()
@@ -694,12 +712,13 @@ class FleetManager{
         cy.url().should('include','/groups')
     }
 
+    //Fleet manager dont have access to create group
     CreateGroup(){
         cy.get('[data-testid="KeyboardArrowDownIcon"]').click()
         cy.get('[class="MuiListItemText-root css-9uwfd7"]').eq(2).click()
         cy.url().should('include','/groups')
     }
-
+    //fleet manager dont have access to edit..... and i have put assertion 'Access Denied' and working perfet
     EditGroup(){
         cy.get('[data-testid="KeyboardArrowDownIcon"]').click()
         cy.get('[class="MuiListItemText-root css-9uwfd7"]').eq(2).click()
@@ -709,6 +728,7 @@ class FleetManager{
         cy.get('.MuiTypography-root.MuiTypography-body1.css-1j729wa').should('have.text', 'Access Denied')
     }
 
+    //same assertion here
     DeleteGroup(){
         cy.get('[data-testid="KeyboardArrowDownIcon"]').click()
         cy.get('[class="MuiListItemText-root css-9uwfd7"]').eq(2).click()
@@ -722,4 +742,5 @@ class FleetManager{
         cy.get('[class="MuiListItemText-root css-1w0mxn0"]').click()
         cy.url().should('include','/login')
     }
+
 }

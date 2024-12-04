@@ -60,7 +60,7 @@ describe('Fleet Manager Tests suits',() => {
     })
 
     it('Change Status', () => {
-        obj.ChangeStatus()
+        obj.ChangeStatus1()
     })
 
     it('Create New Car', () => {
@@ -79,15 +79,15 @@ describe('Fleet Manager Tests suits',() => {
         obj.CommentFucntions()
      })
 
-     it('Comments Functions', () => {
+     it('Reanalize the Report', () => {
         obj.ReanalizeReport()
      })
 
-     it('Download Manual Report', () => {
+     it.skip('Download Manual Report', () => {
         obj.DownloadManualReport()
      })
 
-     it('Download Custom Report', () => {
+     it.skip('Download Custom Report', () => {
         obj.DownloadCustomReport()
      })
 
@@ -107,6 +107,7 @@ describe('Fleet Manager Tests suits',() => {
         obj.ChangeServiceStatus()
     })
 
+    //Requested services Modal Testcases  28/11/24 
     it('Change Status', () => {
         obj.ChangeStatus()
     })
@@ -147,6 +148,7 @@ describe('Fleet Manager Tests suits',() => {
         obj.CreateNewSubservice3()
     })
 
+    //28 Onwards
     it('Couple Car', () => {
         obj.CoupleCar()
     })
@@ -175,6 +177,7 @@ describe('Fleet Manager Tests suits',() => {
         obj.ShowMore()
     })
 
+    //41 Onwards
     it('Validate Notifications', () => {
         obj.ValidateNotifications()
     })

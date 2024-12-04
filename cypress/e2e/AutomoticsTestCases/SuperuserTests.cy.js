@@ -4,14 +4,13 @@ describe('Superuser Tests', () => {
     const dashboardObj = new DashboardPage();
     beforeEach("Login",() => {
         dashboardObj.login()
-        dashboardObj.VisitDashboard()
     })
 
     it('Dashboard Endpoints',()=>{
         dashboardObj.DashboardEndpoints()
     })
 
-    it.only('Dashboard Functionality', () => {
+    it('Dashboard Functionality', () => {
         dashboardObj.CreateClient()
         dashboardObj.AssignClient()
         dashboardObj.FaultcodeSolutions()

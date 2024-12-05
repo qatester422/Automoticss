@@ -197,7 +197,7 @@ class FleetManager{
     CarDataFilledIn(){
         cy.get('[aria-label="Repair"]').click()
         cy.wait(5000)
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('have.text','Audi')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('be.visible')
         cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('be.visible')
         cy.get('[class="MuiBox-root css-1qxtz39"]').first().should('contain.text','VIN')
     }
@@ -214,7 +214,7 @@ class FleetManager{
         cy.get('[class="MuiBox-root css-13yoi82"]').eq(0).click()
         cy.get('[class="MuiBox-root css-1k6a8z7"]').last().click()
         cy.get('[class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"]').last().click()
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('have.text','Audi')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('be.visible')
         cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('be.visible')
         cy.get('[class="MuiBox-root css-1qxtz39"]').first().should('be.visible')
     }

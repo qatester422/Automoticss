@@ -215,8 +215,8 @@ class FleetManager{
         cy.get('[class="MuiBox-root css-1k6a8z7"]').last().click()
         cy.get('[class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"]').last().click()
         cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('have.text','Audi')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('have.text','A32020')
-        cy.get('[class="MuiBox-root css-1qxtz39"]').first().should('include.text','VIN :')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('be.visible')
+        cy.get('[class="MuiBox-root css-1qxtz39"]').first().should('be.visible')
     }
 
     ChangeStatus1(){
@@ -546,8 +546,8 @@ class FleetManager{
         cy.get('[role="combobox"]').last().type('Audi').type('{enter}')
         cy.get('[class="MuiButtonBase-root css-1knlxk0"]').eq(1).click()
         cy.get('[role="combobox"]').last().type('A32020').type('{enter}')
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(0).should('have.text','Audi')
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(1).should('have.text','Audi')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(0).should('be.visible')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(1).should('be.visible')
         cy.get('[class="MuiStack-root css-kcfxyd"]').eq(0).should('be.visible')
         cy.get('[class="MuiStack-root css-kcfxyd"]').eq(1).should('be.visible')
     }

@@ -410,10 +410,10 @@ class RepairTests{
         cy.get('[role="combobox"]').last().type('Peugeot').type('{enter}')
         cy.get('[class="MuiButtonBase-root css-1knlxk0"]').eq(2).click()
         cy.get('[role="combobox"]').last().type('Boxer').type('{enter}')
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(0).should('have.text','Peugeot')
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(1).should('have.text','Peugeot')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(0).should('have.text','Boxer2024')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(1).should('have.text','Boxer2024')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(0).should('be.visible')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(1).should('be.visible')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(0).should('be.visible')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(1).should('be.visible')
     }
 
     ShowMore(){

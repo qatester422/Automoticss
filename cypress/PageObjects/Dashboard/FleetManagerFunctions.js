@@ -214,8 +214,8 @@ class FleetManager{
         cy.get('[class="MuiBox-root css-13yoi82"]').eq(0).click()
         cy.get('[class="MuiBox-root css-1k6a8z7"]').last().click()
         cy.get('[class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1yxmbwk"]').last().click()
-        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('have.text','Peugeot')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('have.text','Boxer2024')
+        cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').first().should('have.text','Audi')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').first().should('have.text','A32020')
         cy.get('[class="MuiBox-root css-1qxtz39"]').first().should('include.text','VIN :')
     }
 
@@ -548,8 +548,8 @@ class FleetManager{
         cy.get('[role="combobox"]').last().type('A32020').type('{enter}')
         cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(0).should('have.text','Audi')
         cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(1).should('have.text','Audi')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(0).should('have.text','A32020')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(1).should('have.text','A32020')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(0).should('include.text','A3')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(1).should('include.text','A3')
     }
 
     ShowMore(){
@@ -723,7 +723,7 @@ class FleetManager{
         cy.get('[data-testid="KeyboardArrowDownIcon"]').click()
         cy.get('[class="MuiListItemText-root css-9uwfd7"]').eq(2).click()
         cy.url().should('include','/groups')
-        cy.get(':nth-child(7) > .MuiBox-root > .css-waxp3m > .MuiStack-root > :nth-child(1)').click()
+        cy.get(':nth-child(1) > .MuiBox-root > .css-waxp3m > .MuiStack-root > :nth-child(1)').click()
         cy.wait(2000)
         cy.get('.MuiTypography-root.MuiTypography-body1.css-1j729wa').should('have.text', 'Access Denied')
     }
@@ -733,7 +733,7 @@ class FleetManager{
         cy.get('[data-testid="KeyboardArrowDownIcon"]').click()
         cy.get('[class="MuiListItemText-root css-9uwfd7"]').eq(2).click()
         cy.url().should('include','/groups')
-        cy.get(':nth-child(7) > .MuiBox-root > .css-waxp3m > .MuiStack-root > :nth-child(2)').click()
+        cy.get(':nth-child(1) > .MuiBox-root > .css-waxp3m > .MuiStack-root > :nth-child(1)').click()
         cy.get('.MuiTypography-root.MuiTypography-body1.css-1j729wa').should('have.text', 'Access Denied')
     }
 

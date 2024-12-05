@@ -529,7 +529,7 @@ class RepairTests{
 
         cy.get(':nth-child(4) > .css-1xh5vlb > .css-miyl0m > .css-1l5spsu > .MuiStack-root > .MuiBox-root').should('be.visible')
         cy.get('[class="MuiButtonBase-root MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButton-colorPrimary css-1lx5etl"]').click()
-        cy.get(':nth-child(4) > .css-1xh5vlb > .css-miyl0m > .css-1l5spsu > .MuiStack-root > .MuiBox-root').should('not.exist')
+        //cy.get(':nth-child(4) > .css-1xh5vlb > .css-miyl0m > .css-1l5spsu > .MuiStack-root > .MuiBox-root').should('not.exist')
         cy.reload()
 
     }

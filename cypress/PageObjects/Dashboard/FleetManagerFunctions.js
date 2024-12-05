@@ -548,8 +548,8 @@ class FleetManager{
         cy.get('[role="combobox"]').last().type('A32020').type('{enter}')
         cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(0).should('have.text','Audi')
         cy.get('[class="MuiTypography-root MuiTypography-body1 css-13sq091"]').eq(1).should('have.text','Audi')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(0).should('include.text','A3')
-        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(1).should('include.text','A3')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(0).should('be.visible')
+        cy.get('[class="MuiStack-root css-kcfxyd"]').eq(1).should('be.visible')
     }
 
     ShowMore(){

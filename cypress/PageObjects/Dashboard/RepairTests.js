@@ -455,7 +455,7 @@ class RepairTests{
     EditClient(){
         cy.get('[aria-label="Client"]').click()
         cy.get('.MuiStack-root.css-rzhh08 > .MuiButtonBase-root.MuiIconButton-root.MuiIconButton-sizeMedium.css-1yxmbwk').first().click({force:true})
-        cy.get("input[value='New Client']").type('Edit')
+        cy.get('.MuiGrid-root > .MuiFormControl-root > .MuiInputBase-root > .MuiInputBase-input').type('Edit')
         cy.get('[class="MuiButtonBase-root MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButton-colorPrimary MuiButton-disableElevation css-1a4gf8s"]').click()
         
     }
